@@ -30,7 +30,31 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->all();
+        $request->validate([
+            "name"=>"required|max:255",
+            "email"=>"required|email",
+            "phone"=>"required",
+            "tel"=>"required",
+            "logo"=>"required|image|max:2048",
+        ]);
+
+        $company = new Company();
+        $company->name = $request->name;
+        $company->email = $request->email;
+        $company->phone = $request->phone;
+        $company->tel = $request->tel;
+        $company->facebook = $request->facebook;
+        $company->instagram = $request->instagram;
+
+        if( $request->hasFile('logo')){
+            $file= $request->file('logo');
+            $fileName= time().'.'.$file->getClientOriginalExtension();
+            $file->move('images', $fileName);
+            $company->logo = 'images/'.$fileName;
+        }
+        $company->save();
+
+        return redirect()->route('company.index');
     }
 
     /**
@@ -46,7 +70,8 @@ class CompanyController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $company = Company::find($id);
+        return view('admin.company.edit', compact('company'));
     }
 
     /**
@@ -54,7 +79,32 @@ class CompanyController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            "name"=>"required|max:255",
+            "email"=>"required|email",
+            "phone"=>"required",
+            "tel"=>"required",
+        ]);
+
+        $company =Company::find($id);
+        $company->name = $request->name;
+        $company->email = $request->email;
+        $company->phone = $request->phone;
+        $company->tel = $request->tel;
+        $company->facebook = $request->facebook;
+        $company->instagram = $request->instagram;
+
+        if( $request->hasFile('logo')){
+            $file= $request->file('logo');
+            $fileName= time().'.'.$file->getClientOriginalExtension();
+            $file->move('images', $fileName);
+            $company->logo = 'images/'.$fileName;
+        }
+        $company->update();
+
+        toast("Record Updated Successfully.", "success");
+
+        return redirect()->route('company.index');
     }
 
     /**
@@ -62,6 +112,9 @@ class CompanyController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $company= Company::find($id);
+        $company->delete();
+
+        return redirect()->back();
     }
 }

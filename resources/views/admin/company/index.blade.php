@@ -4,7 +4,10 @@
             <div class="card">
                 <div class="card-header justify-content-between">
                     <h4>Company Details</h4>
-                    <a href="{{ route('company.create') }}" class="btn btn-primary">Add</a>
+                    @if (!$company)
+                        <a href="{{ route('company.create') }}" class="btn btn-primary">Add</a>
+                    @endif
+
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -23,21 +26,29 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    @if ($company)
+                                @if ($company)
+                                    <tr>
                                         <td>
                                             1
                                         </td>
-                                        <td></td>
-                                        <td>Our News Portal</td>
-                                        <td>980734324</td>
-                                        <td>0187843</td>
-                                        <td>we@ournewsportal.com</td>
                                         <td>
-                                            <a href="{{ route('company.edit', $company->id) }}" class="btn btn-primary">Edit</a>
+                                            <img src="{{ asset($company->logo) }}" alt="{{ $company->name }}" width="30">
                                         </td>
-                                    @endif
-                                </tr>
+                                        <td>{{ $company->name }}</td>
+                                        <td>{{ $company->phone }}</td>
+                                        <td>{{ $company->tel }}</td>
+                                        <td>{{ $company->email }}</td>
+                                        <td>
+                                            <form action="{{ route('company.destroy', $company->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <a href="{{ route('company.edit', $company->id) }}"
+                                                    class="btn btn-primary">Edit</a>
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endif
 
                             </tbody>
                         </table>
