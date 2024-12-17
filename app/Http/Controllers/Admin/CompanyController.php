@@ -22,7 +22,12 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        return view('admin.company.create');
+        $company= Company::first();
+        if(!$company){
+            return view('admin.company.create');
+        }else{
+            return redirect()->route('company.index');
+        }
     }
 
     /**
