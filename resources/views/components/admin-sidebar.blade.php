@@ -17,7 +17,7 @@
                 <i data-feather="settings"></i><span>Settings</span></a>
             <ul class="dropdown-menu">
                 <li><a class="nav-link" href="{{ route('company.index') }}">Company Details</a></li>
-                <li><a class="nav-link" href="widget-data.html">Categories</a></li>
+                <li><a class="nav-link" href="{{route('category.index')}}">Categories</a></li>
             </ul>
         </li>
 
