@@ -72,7 +72,6 @@
                         {{ $slot }}
                     </div>
                 </section>
-
             </div>
             <footer class="main-footer">
                 <div class="footer-left">

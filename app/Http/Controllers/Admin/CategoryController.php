@@ -14,9 +14,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::orderby('position')->get();
+        $categories = Category::orderby('position', 'asc')->get();
         return view('admin.category.index', compact('categories'));
-    }
+    }   
 
     /**
      * Show the form for creating a new resource.   
