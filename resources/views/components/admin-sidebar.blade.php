@@ -23,7 +23,7 @@
 
         <li class="menu-header">Manage</li>
         <li class="dropdown active">
-            <a href="index.html" class="nav-link"><i data-feather="clipboard"></i><span>Post</span></a>
+            <a href="{{route('post.index')}}" class="nav-link"><i data-feather="clipboard"></i><span>Post</span></a>
         </li>
         <li class="dropdown active">
             <a href="index.html" class="nav-link"><i data-feather="film"></i><span>Advertise</span></a>

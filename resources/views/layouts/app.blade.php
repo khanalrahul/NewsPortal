@@ -15,6 +15,8 @@
     <!-- Custom style CSS -->
     <link rel="stylesheet" href="/assets/css/custom.css">
     <link rel='shortcut icon' type='image/x-icon' href='/assets/img/favicon.ico' />
+    <link rel="stylesheet" href="/assets/bundles/summernote/summernote-bs4.css">
+
 </head>
 
 <body>
@@ -97,6 +99,8 @@
     <script src="/assets/js/scripts.js"></script>
     <!-- Custom JS File -->
     <script src="/assets/js/custom.js"></script>
+    <script src="/assets/bundles/summernote/summernote-bs4.js"></script>
+
 </body>
 
 </html>

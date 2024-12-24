@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('views')->default(0);
             $table->longText('meta_word')->nullable();
             $table->longText('meta_description')->nullable();
-            $table->string('status')->nullable();
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
 
